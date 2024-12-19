@@ -10,7 +10,7 @@ done
 
 cd $DIST_DIR;
 git add -A;
-git commit -m "Nightly";
+git commit;
 git branch "main"
 git checkout main
 git push -f origin main;
