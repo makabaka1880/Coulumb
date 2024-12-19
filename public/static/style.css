@@ -1,0 +1,5 @@
+.h-container {
+    display: flex; /* Enables Flexbox */
+    flex-direction: row; /* Default: arranges children horizontally */
+    gap: 10px; /* Adds spacing between elements */
+  }
