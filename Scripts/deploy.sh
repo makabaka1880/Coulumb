@@ -36,7 +36,7 @@ cd "$DIST_BUILD_DIR"
 
 rm -rf dist
 # Generate static files
-npm run build -- --base /Comedian/
+npm run build -- --base /Coulumb/
 
 # Enter the generated folder
 cd "$DIST_DIR"
