@@ -1,7 +1,9 @@
 ---
 theme: geist
+layout: cover
 transition: slide-up
 coverAuthor: 演讲者
+colorSchema: dark
 ---
 
 
@@ -61,11 +63,11 @@ image: /assets/CoulumbPortrait.png
 transition: slide-up
 ---
 
-<style>
+<!-- <style>
   .content {
     padding: 100px
   }
-</style>
+</style> -->
 
 <div class="content">
 
@@ -134,4 +136,4 @@ transition: slide-left
 
 </h3>
 
-其中 **$k$** 为某个常数, **$l$** 为到场源（电荷）的距离, **$q_1, q_2$** 为电荷1与2的电荷量。
+事实上，这里的 **$k_e$** 有个名字叫 **库仑常数**，大小约为 **$k_e = 8.9875 \times 10^9 \mathrm{N \cdot m^2 / C^2}$**.
