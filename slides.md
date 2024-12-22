@@ -7,7 +7,7 @@ colorSchema: dark
 ---
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-<link rel="stylesheet" href="/static/style.css"/>
+<link rel="stylesheet" href="/styles/style.css"/>
 
 # 库仑定律与静电场
 Coulumb's Law and SEFs
@@ -251,14 +251,45 @@ flowchart LR
   recur_1[获取位置]
   recur_2[获取电荷量]
   recur_3[初始化一个Charge模型]
-  recur_3 --> recur_1
-  start --> recur_start --> recur_1 --> recur_2 --> recur_3
   start[开始]
   cal[计算总电场]
   mark[采样格点标记电场]
-  recur_3 --> cal --> mark
+  node_recur_start(( ))
+  node_recur_end(( ))
+  node_recur_cal(( ))
+  start --> get_charges
+  start --> mark
+  subgraph get_charges[获取电荷信息]
+    direction LR
+    recur_start --> node_recur_start --> recur_1 --> recur_2 --> recur_3 --> node_recur_end
+    node_recur_end --> node_recur_start
+  end
+  node_recur_end --> node_recur_cal
+  mark --> node_recur_cal
+  node_recur_cal --> cal
+```
+<div class="h-container">
+
+1. 找到所有电荷
+2. 记录其电荷量与位置
+3. 记录下来
+4. 计算总电场
+5. 采样格点并标记（这里用箭头）
+
+```python
+class Charge:
+    def __init__(self, k: float, pos):
+      ...
+    def __call__(self, pos):
+      ...
+      fieldx = -(self.k * (posx - self.x)) / (r**3)
+      fieldy = -(self.k * (posy - self.y)) / (r**3)
+      fieldz = -(self.k * (posz - self.z)) / (r**3)
+
+
 ```
 
+</div>
 <!--
 算法大概这牙膏
 1. 找到所有电荷
