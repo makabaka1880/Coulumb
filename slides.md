@@ -6,7 +6,6 @@ coverAuthor: 演讲者
 colorSchema: dark
 ---
 
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link rel="stylesheet" href="/static/style.css"/>
 
@@ -19,6 +18,12 @@ Coulumb's Law and SEFs
     <i>Press <kbd>space</kbd> or click to page <i class="fa fa-chevron-right fa-fade" style="font-size:13px;"></i></i>
 </div>
 </button>
+
+<!--
+大家好 我们做的是库仑定律与静电场
+- 介绍
+- 推导
+-->
 
 ---
 transition: slide-left
@@ -57,12 +62,19 @@ transition: slide-left
   </div>
 </v-click>
 
+<!--
+- 静电就是不在动的电荷
+- 自然界中有质子和电子
+  - 质子正电
+  - 电子负电
+  - 两者电荷正好相反
+-->
+
 ---
 layout: image
 image: /assets/CoulumbPortrait.png
 transition: slide-up
 ---
-
 
 <style>
   .content {
@@ -78,6 +90,10 @@ transition: slide-up
 ## 库仑定律
 库仑定律是由法国物理学家查尔斯·奥古斯丁·库仑在1785年通过一系列实验发现的。他利用自己发明的扭秤，精确测量了电荷之间的作用力，发现这种力与电荷量的乘积成正比，与它们之间距离的平方成反比。这一定律是电学史上的重要里程碑，为静电学奠定了基础。库仑的研究不仅验证了电荷间的基本相互作用，还揭示了自然界中普遍存在的平方反比规律，为后来的电磁理论和物理学发展开辟了新道路。
 </div>
+
+<!--
+静电场是静电荷产生的电场
+-->
 
 ---
 transition: fade
@@ -102,6 +118,14 @@ transition: fade
 
 其中 **$k$** 为某个常数, **$l$** 为到场源（电荷）的距离, **$q$** 为电荷量。
 
+<!--
+首先，我们进行定性分析
+- **我们分析的**(这一点很重要)电场是在三维空间中的，所以电场符合平方反比律
+- 也就是说 电场E正比于一分之l方
+- 根据定义，电场与电荷成正比。
+所以E=某个常数k乘以q除以l方，其中l为到电荷的距离，q为电荷的电荷量
+-->
+
 ---
 
 # 库仑定律推导
@@ -115,6 +139,14 @@ transition: fade
 
 <img src="/assets/ISL.png" style="filter: invert(100%); height: 200px"/>
 </div>
+
+<!--
+平方反比律
+- 与距离成平方反比
+- 想象一个球面，在膨胀
+- 那么它的球面面积与距离的平方呈正比，因为它等于4pi乘以r的平方
+- 而且当场的强度被均摊在这面积上了，所以场强与面积呈反比，与距离呈平方反比。
+-->
 
 ---
 
@@ -137,6 +169,14 @@ transition: fade
 
 事实上，这里的 **$k_e$** 有个名字叫 **库仑常数**，大小约为 **$k_e = 8.9875 \times 10^9 \mathrm{N \cdot m^2 / C^2}$**.
 
+<!--
+接下来进行量纲分析
+易得E的量纲为力除以电荷，而且q的是电荷，也就是说电场力可以通过电场乘以另一个电荷的电荷量q乘以某个常数得到
+
+也就是说两个电荷之间的力可以通过 F=k q1 q2 除以 r方 得到
+
+这里的ke叫库仑常数，大小为8.9875乘以10的九次方 牛乘以平方米每平方库仑
+-->
 
 ---
 
@@ -148,18 +188,24 @@ transition: fade
 
 让我们回到一开始的那个电场表达式
 
-我们知道，位于$A$的电荷发出的电场在$P$一定在直线$AP$上。同时，一个一个正电荷的电场方向一定与$\overrightarrow{AP}$相同。由此可得:
+我们知道，位于$Q$的电荷发出的电场在$P$一定在直线$QP$上。同时，一个一个正电荷的电场方向一定与$\overrightarrow{QP}$相同。由此可得:
 
 <h3>  
 
 $$
-\vec{\mathbf E}(\vec P) = \mathbf{E}\times\mathrm{normalize}(\overrightarrow{AP}) \\
+\vec{\mathbf E}(\vec P) = \mathbf{E}\times\mathrm{normalize}(\overrightarrow{QP}) \\
 = \frac{k_eq_1q_2}{r^3}\overrightarrow {AP} \\ 
-= \frac{k_eq_1q_2}{r^3}(\vec P - \vec A)
+= \frac{k_eq_1q_2}{r^3}(\vec P - \vec Q)
 $$
 
 </h3>
 
+<!--
+继续拓展
+这里就看ppt吧 公式是这样读的：
+电场E在P电的强度 等于E乘以平行于AP的单位向量 
+也就是ke q1 q2除以r立方 乘以向量P与向量Q的差
+-->
 
 ---
 
@@ -187,6 +233,11 @@ $$\mathbf F_e(\vec P) = q_0\sum_i{\frac{k_eq_i}{r^3}(\vec P - \vec Q_i)}$$
 
 </h3>
 
+<!--
+我们知道，合力是可以通过线性叠加各个力来得到的。电场里也是一样的，也就是是说
+电场力等于q0 乘以 对于所有电荷Qi来说的ke qi 除以 r立方 乘以 向量P与向量Qi的差
+-->
+
 ---
 
 # 可视化
@@ -208,16 +259,33 @@ flowchart LR
   recur_3 --> cal --> mark
 ```
 
+<!--
+算法大概这牙膏
+1. 找到所有电荷
+2. 记录其电荷量与位置
+3. 记录下来
+4. 计算总电场
+5. 采样格点并标记（这里用箭头）
+-->
+
 ---
 layout: center
 ---
 
-
 # 就直接下一页，后面我会贴一些东西
 
+<!--
+然后，这就是结果：（一字不差说这句话）
+-->
 
 ---
 layout: center
 ---
 
 # 谢谢观看
+
+<!--
+然后感谢啊，啥的看你发挥哈
+
+加油
+-->
