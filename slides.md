@@ -246,7 +246,6 @@ $$\mathbf F_e(\vec P) = q_0\sum_i{\frac{k_eq_i}{r^3}(\vec P - \vec Q_i)}$$
 
 ```mermaid
 flowchart LR
-
   recur_start[获取所有电荷]
   recur_1[获取位置]
   recur_2[获取电荷量]
@@ -260,7 +259,7 @@ flowchart LR
   start --> get_charges
   start --> mark
   subgraph get_charges[获取电荷信息]
-    direction LR
+    direction RL
     recur_start --> node_recur_start --> recur_1 --> recur_2 --> recur_3 --> node_recur_end
     node_recur_end --> node_recur_start
   end
@@ -270,33 +269,36 @@ flowchart LR
 ```
 <div class="h-container">
 
-1. 找到所有电荷
-2. 记录其电荷量与位置
-3. 记录下来
-4. 计算总电场
-5. 采样格点并标记（这里用箭头）
-
-```python
+```python {1-3|6-7|9-}
 class Charge:
-    def __init__(self, k: float, pos):
+  def __call__(self, pos):
+    fieldx = -(self.k * (pos.x - self.x)) / (r**3)
       ...
-    def __call__(self, pos):
-      ...
-      fieldx = -(self.k * (posx - self.x)) / (r**3)
-      fieldy = -(self.k * (posy - self.y)) / (r**3)
-      fieldz = -(self.k * (posz - self.z)) / (r**3)
-
-
+...
+for charge in charges:
+    fields.append(Charge(charge['q'], charge.location))
+...
+for obj in vects:
+    ...
+    create_vector_at(field_vector, obj, vecthick)
 ```
 
-</div>
-<!--
-算法大概这牙膏
+<div style="padding-left: 60px;">
+
 1. 找到所有电荷
 2. 记录其电荷量与位置
 3. 记录下来
 4. 计算总电场
 5. 采样格点并标记（这里用箭头）
+</div>
+
+</div>
+
+<!--
+算法大概这牙膏
+1. 定义电荷的class
+2. 获取所有电荷的位置与信息并记录
+3. 根据测量结果标记格点
 -->
 
 ---
