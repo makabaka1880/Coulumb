@@ -1,5 +1,5 @@
 ---
-theme: geist
+theme: default
 layout: cover
 transition: slide-up
 coverAuthor: 演讲者
@@ -24,7 +24,7 @@ Coulumb's Law and SEFs
 transition: slide-left
 ---
 
-# 静电是什么？
+# 静电是什么?
 
 和电流相对的就是静电，单独的电荷。我们一般在冬天被电到也是因为静电电荷形成的电势差导致的。
 在自然界中，一个静电荷可以是一个电子或者一个质子。
@@ -63,11 +63,12 @@ image: /assets/CoulumbPortrait.png
 transition: slide-up
 ---
 
-<!-- <style>
+
+<style>
   .content {
     padding: 100px
   }
-</style> -->
+</style>
 
 <div class="content">
 
@@ -79,7 +80,7 @@ transition: slide-up
 </div>
 
 ---
-transition: slide-left
+transition: fade
 ---
 
 # 库仑定律推导
@@ -102,12 +103,12 @@ transition: slide-left
 其中 **$k$** 为某个常数, **$l$** 为到场源（电荷）的距离, **$q$** 为电荷量。
 
 ---
-transition: slide-left
----
 
-<h1> 定义 </h1>
+# 库仑定律推导
 
-## 平方反比律
+那库仑定律是怎么推导出来的呢？
+
+## **定义** *平方反比律*
 <div class="h-container">
 
 是一种物理定律，表明某些物理量（如光强、引力、静电力等）与**距离的平方成反比**。这意味着随着距离的增大，这些物理量的强度会迅速减弱。平方反比律的来源可以追溯到点源的辐射或力的分布。在三维空间中，随着距离的增加，能量或力的“分布面积”以**平方比例**增加，因此强度会**减弱**为距离的平方反比。如右图中，场的强被均匀的散在了$a^2$与$b^2$的球面上，因此场强之比为 **$a^{-2} : b^{-2}$**, 顾 **$\mathbf{F}(l) \varpropto \frac{1}{l^2}$**
@@ -115,8 +116,6 @@ transition: slide-left
 <img src="/assets/ISL.png" style="filter: invert(100%); height: 200px"/>
 </div>
 
----
-transition: slide-left
 ---
 
 # 库仑定律推导
@@ -132,8 +131,93 @@ transition: slide-left
 
 <h3> 
  
-  $$\mathbf{E} = \frac{kq_1q_2}{l^2}$$
+  $$\mathbf{E} = \frac{kq_1q_2}{r^2}$$
 
 </h3>
 
 事实上，这里的 **$k_e$** 有个名字叫 **库仑常数**，大小约为 **$k_e = 8.9875 \times 10^9 \mathrm{N \cdot m^2 / C^2}$**.
+
+
+---
+
+# 库仑定律推导
+
+那库仑定律是怎么推导出来的呢？
+
+## 0x02 拓展至场表达式
+
+让我们回到一开始的那个电场表达式
+
+我们知道，位于$A$的电荷发出的电场在$P$一定在直线$AP$上。同时，一个一个正电荷的电场方向一定与$\overrightarrow{AP}$相同。由此可得:
+
+<h3>  
+
+$$
+\vec{\mathbf E}(\vec P) = \mathbf{E}\times\mathrm{normalize}(\overrightarrow{AP}) \\
+= \frac{k_eq_1q_2}{r^3}\overrightarrow {AP} \\ 
+= \frac{k_eq_1q_2}{r^3}(\vec P - \vec A)
+$$
+
+</h3>
+
+
+---
+
+# 库仑定律推导
+
+那库仑定律是怎么推导出来的呢？
+
+## 0x03
+
+由于力场是可以通过线性叠加的，我们可以得到
+
+<h3>
+
+$$\mathbf F_E = \sum \vec F_q$$
+
+</h3>
+
+且每个电荷的电力场与电场线性相关，我们就可以得到 $\mathbf E = \sum \mathbf E_q$
+
+自此，库仑定律的完成体出现了：
+
+<h3>
+
+$$\mathbf F_e(\vec P) = q_0\sum_i{\frac{k_eq_i}{r^3}(\vec P - \vec Q_i)}$$
+
+</h3>
+
+---
+
+# 可视化
+
+我们通过以下算法可以实现对于一个静电场的可视化
+
+```mermaid
+flowchart LR
+
+  recur_start[获取所有电荷]
+  recur_1[获取位置]
+  recur_2[获取电荷量]
+  recur_3[初始化一个Charge模型]
+  recur_3 --> recur_1
+  start --> recur_start --> recur_1 --> recur_2 --> recur_3
+  start[开始]
+  cal[计算总电场]
+  mark[采样格点标记电场]
+  recur_3 --> cal --> mark
+```
+
+---
+layout: center
+---
+
+
+# 就直接下一页，后面我会贴一些东西
+
+
+---
+layout: center
+---
+
+# 谢谢观看
